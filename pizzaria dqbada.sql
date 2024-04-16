@@ -159,3 +159,137 @@ select *from pizza where valor between 17 and 20;
 select *from pizza where valor < 17 or valor >20;
 select *from pizza where not(valor>=17 and valor <=20);
 select *from pizza where valor not between 17 and 20;
+
+-- pizzas com valores iguais a 15 reais e 20 reais
+
+select *from pizza where valor=15 or valor=20;
+
+select *from pizza where valor in (15,20);
+
+
+
+-- pizzas com valores diferentes de 15 e 20 reais
+
+select *from pizza where valor !=15 and valor !=20;
+
+select *from pizza where valor not in (15,20);
+
+
+
+-- pizzas com valores nullos
+
+select *from pizza where valor <=> null;
+
+select *from pizza where valor is null;
+
+
+
+-- pizzas com valores diferentes de null
+
+select *from pizza where valor is not null;
+
+
+
+-- pizzas que começam com a letra E
+
+select *from pizza where nome like 'E%';
+
+
+
+-- pizzas que terminam com a letra A
+
+select *from pizza where nome like '%a';
+
+
+
+-- pizzas que contenha no nome a letra RO
+
+select *from pizza where nome like '%ro%';
+
+
+
+-- ordenar coluna
+
+select *from pizza order by valor;
+
+-- decrescente
+
+select *from pizza order by valor desc;
+
+-- crescente
+
+select *from pizza order by valor asc;
+
+
+
+-- 3 pizzas mais caras
+
+select *from pizza order by valor desc limit 3;
+
+
+
+/*Funções de agregação
+
+* AVG(coluna) Média dos valores das colunas
+
+* count(coluna) conta numero de linhas
+
+* Max(coluna) maior valor da coluna
+
+* Min(coluna) menor valor da coluna
+
+* Sum(coluna) soma dos valores
+
+*/
+
+*/
+
+
+-- preço medio
+
+select avg(valor) as preco_medio from pizza;
+
+select *from pizza p where nome like '%esa';
+
+
+
+-- sabores cadastrados
+
+select count(*) as qtde from pizza; -- considera valor nullos
+
+select count (valor) as qtde from pizza;
+
+
+
+-- pizza mais cara
+
+select max(valor) as maior_valor from pizza;
+
+
+
+-- pizza mais barata
+
+select min(valor) as menor_valor from pizza;
+
+
+
+-- soma de todos
+
+select sum(valor) as soma from pizza;
+
+
+select sum(valor) as total from item_pedido where pedido_id = 7;
+
+
+
+select sum(quantidade*valor) from item_pedido where pedido_id = 7;
+
+
+
+select c.cliente_id,c.nome,count(p.pedido_id) as qtde_pedido
+
+  from pedido p
+
+  inner join cliente c on p.cliente_id = c.cliente_id
+
+  group by c.cliente_id,c.nome;
